@@ -22,6 +22,7 @@ public class SpringMain {
 
             MealRestController mealRestController = appCtx.getBean(MealRestController.class);
             mealRestController.save(new Meal(LocalDateTime.now(), "Eat", 777, SecurityUtil.authUserId()));
+            mealRestController.getAll();
         }
     }
 }
