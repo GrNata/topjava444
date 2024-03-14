@@ -16,6 +16,8 @@ public class MealTo {
 //    private final Supplier<Boolean> excess;  // filteredByClosure
     private boolean excess;
 
+    private int userId;
+
     public MealTo(Integer id, LocalDateTime dateTime, String description, int calories, boolean excess) {
         this.id = id;
         this.dateTime = dateTime;
@@ -24,7 +26,16 @@ public class MealTo {
         this.excess = excess;
     }
 
-//    for filteredByClosure
+    public MealTo(Integer id, LocalDateTime dateTime, String description, int calories, boolean excess, int userId) {
+        this.id = id;
+        this.dateTime = dateTime;
+        this.description = description;
+        this.calories = calories;
+        this.excess = excess;
+        this.userId = userId;
+    }
+
+    //    for filteredByClosure
 //    public Boolean getExcess() {
 //        return excess.get();
 //    }
@@ -54,6 +65,10 @@ public class MealTo {
         return excess;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
     @Override
     public String toString() {
         return "MealTo{" +
@@ -62,6 +77,7 @@ public class MealTo {
                 ", description='" + description + '\'' +
                 ", calories=" + calories +
                 ", excess=" + excess +
+                ", userId=" + userId +
                 '}';
     }
 }
