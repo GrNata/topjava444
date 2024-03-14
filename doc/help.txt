@@ -1,0 +1,21 @@
+1. Запуск tomcat вручную через Terminal:
+/Users/NataGrigoreva/Library/apache-tomcat-9.0.86/bin/startup.sh
+остановка:
+/Users/NataGrigoreva/Library/apache-tomcat-9.0.86/bin/shutdown.sh
+
+После этого вы сможете получить доступ к http://localhost:8080/
+
+https://javarush.com/quests/lectures/questservlets.level11.lecture03
+tomcat-users.xml:
+<user username="tomcat" password="111" roles="manager-gui"/>
+<user username="tomcat" password="111" roles="manager-script"/>
+
+<role rolename="tomcat"/>
+<user username="tomcat" password="111" roles="tomcat, manager-gui, manager-script"/>
+
+
+
+2. Деплоиться в Tomcat лучше как war exploded: нет упаковки в war и
+ при нажатой кнопке Update Resources on Frame Deactivation можно обновляться css, html, jsp без передеплоя.
+При изменении web.xml, добавлении методов, классов необходим redeploy.
+
