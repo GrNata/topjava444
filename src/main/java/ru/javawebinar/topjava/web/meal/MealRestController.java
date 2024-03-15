@@ -40,12 +40,19 @@ public class MealRestController {
         return service.get(id, SecurityUtil.authUserId());
     }
 
-    public Collection<MealTo> getAllByFilterDate(LocalDate startDate, LocalDate endDate) {
-        return null;
-    }
+//    public Collection<MealTo> getAllByFilterDate(LocalDate startDate, LocalDate endDate) {
+//        log.info("filter by date: {} - {}", startDate, endDate);
+//        return null;
+//    }
+//
+//    public Collection<MealTo> getAllByFilterTime(LocalTime startTime, LocalTime endTime) {
+//        log.info("filter by time: {} - {}", startTime, endTime);
+//        return service.getAllByFilterTime(startTime, endTime);
+//    }
 
-    public Collection<MealTo> getAllByFilterTime(LocalTime startTime, LocalTime endTime) {
-        return null;
+    public Collection<MealTo> getAllByFilterDateTime(String startD, String endD, String starT, String endT) {
+        log.info("filter by date - time: {}, {} - {}, {}", startD, endD, starT, endT);
+        return service.getAllByFilterDateTime(startD, endD, starT, endT);
     }
 
 }
