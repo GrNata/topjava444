@@ -34,6 +34,7 @@ public class MealServlet extends HttpServlet {
     private ConfigurableApplicationContext app;
     private MealRestController controller;
     private MealService service;
+    private SecurityUtil securityUtil;
 
 
     @Override
@@ -44,17 +45,15 @@ public class MealServlet extends HttpServlet {
         controller = app.getBean(MealRestController.class);
         service = app.getBean(MealService.class);
         repository = app.getBean(InMemoryMealRepository.class);
+
+        securityUtil = new SecurityUtil();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("POST");
-
         request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
-
         String action = request.getParameter("action");
-        System.out.println("POST action: "+ action);
 
         if (action.equals("filter")) {
             String fromTime = request.getParameter("fromTime");
@@ -73,6 +72,8 @@ public class MealServlet extends HttpServlet {
                     request.getParameter("description"),
                     Integer.parseInt(request.getParameter("calories")),
                     SecurityUtil.authUserId());
+//            !!!!
+            System.out.println("1. SecurityUtil.authUserId() = " +SecurityUtil.authUserId());
 
             log.info(meal.isNew() ? "Create {}" : "Update {}", meal);
             controller.save(meal);
@@ -84,11 +85,7 @@ public class MealServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("GET");
-
         String action = request.getParameter("action");
-//        String fromTime = request.getParameter("fromTime");
-//        System.out.println("GET fromTime: " + fromTime);
 
         switch (action == null ? "all" : action) {
             case "delete":
@@ -103,6 +100,10 @@ public class MealServlet extends HttpServlet {
                 final Meal meal = "create".equals(action) ?
                         new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000, SecurityUtil.authUserId()) :
                         controller.get(getId(request));
+
+//                !!!!!!!!
+                System.out.println("2. SecurityUtil.authUserId() = " + SecurityUtil.authUserId());
+
                 request.setAttribute("meal", meal);
                 request.getRequestDispatcher("/mealForm.jsp").forward(request, response);
                 break;
