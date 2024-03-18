@@ -21,9 +21,6 @@ public class MealService {
     public MealService(MealRepository repository) {
         this.repository = repository;
     }
-//    public MealService(JdbcMealRepository repository) {
-//        this.repository = repository;
-//    }
 
     public Meal get(int id, int userId) {
         return checkNotFoundWithId(repository.get(id, userId), id);
