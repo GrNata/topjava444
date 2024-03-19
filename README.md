@@ -1,3 +1,7 @@
+[comment]: <> ([![Codacy Badge]&#40;https://app.codacy.com/project/badge/Grade/bee16f3145654047a0505c62aeefd8a2&#41;]&#40;https://app.codacy.com/gh/JavaWebinar/topjava/dashboard&#41;)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bee16f3145654047a0505c62aeefd8a2)](https://app.codacy.com/gh/GrNata/topjava444/dashboard)
+
 Java Enterprise Online Project
 ===============================
 
