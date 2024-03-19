@@ -1,5 +1,6 @@
 [comment]: <> ([![Codacy Badge]&#40;https://app.codacy.com/project/badge/Grade/bee16f3145654047a0505c62aeefd8a2&#41;]&#40;https://app.codacy.com/gh/JavaWebinar/topjava/dashboard&#41;)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d127f8eb90dc4b82be25e0d9e9acac16)](https://app.codacy.com/gh/GrNata/topjava444?utm_source=github.com&utm_medium=referral&utm_content=GrNata/topjava444&utm_campaign=Badge_Grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bee16f3145654047a0505c62aeefd8a2)](https://app.codacy.com/gh/GrNata/topjava444/dashboard)
 
 Java Enterprise Online Project
