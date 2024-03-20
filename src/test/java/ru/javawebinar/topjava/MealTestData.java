@@ -2,6 +2,7 @@ package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.model.Meal;
 
+import java.time.Duration;
 import java.time.Month;
 //import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -33,6 +34,8 @@ public class MealTestData {
     }
 
     public static Meal getUpdated() {
-        return new Meal(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
+//        return new Meal(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
+//      ChronoUnit нет в java 2, вместо него Duration
+        return new Meal(MEAL1_ID, meal1.getDateTime().plus(Duration.ofMinutes(2)), "Обновленный завтрак", 200);
     }
 }
