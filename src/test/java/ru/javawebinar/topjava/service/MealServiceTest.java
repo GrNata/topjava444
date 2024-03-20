@@ -1,11 +1,14 @@
 package ru.javawebinar.topjava.service;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.event.annotation.AfterTestMethod;
+import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,6 +17,8 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.MealTestData.*;
@@ -28,6 +33,32 @@ import static ru.javawebinar.topjava.UserTestData.USER_ID;
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 //@Ignore
 public class MealServiceTest {
+    private static long classStartTime;
+    private static long classEndTime;
+    private static Map<String, Long> testTimeMap = new HashMap<>();
+
+    @Rule
+    public TimingTestWatcher watcher = new TimingTestWatcher();
+
+    @BeforeTestMethod
+    public static void beforeMethod() {
+        classStartTime = System.currentTimeMillis();
+    }
+
+    @AfterTestMethod
+    public static void afterMethod() {
+        classEndTime = System.currentTimeMillis();
+//        System.out.println("Тест метод:");
+//        System.out.println("Время выполнения метода: " + (classEndTime - classStartTime) + " ms");
+    }
+
+    @AfterClass
+    public static void printSummaryTime() {
+        System.out.println("\n\nВремя тестов:");
+        for (Map.Entry<String, Long> entry : testTimeMap.entrySet()) {
+            System.out.println("Test: " + entry.getKey() + ",  время выполнения: " +entry.getValue() + " ms");
+        }
+    }
 
     @Autowired
     private MealService service;
@@ -111,5 +142,23 @@ public class MealServiceTest {
     @Test
     public void getBetweenWithNullDates() {
         MEAL_MATCHER.assertMatch(service.getBetweenInclusive(null, null, USER_ID), meals);
+    }
+
+
+    private class TimingTestWatcher extends TestWatcher {
+        private long startTime;
+
+        @Override
+        protected void starting(Description description) {
+            System.out.println("Старт тест: " + description.getMethodName());
+            startTime = System.currentTimeMillis();
+        }
+
+        @Override
+        protected void finished(Description description) {
+            long duration = System.currentTimeMillis() - startTime;
+//            System.out.println("Окончание теста: " + description.getMethodName() + ", окончание: " + duration + "ms");
+            testTimeMap.put(description.getMethodName(), duration);
+        }
     }
 }
