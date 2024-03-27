@@ -1,12 +1,13 @@
 package ru.javawebinar.topjava.service;
 
 import org.ehcache.xml.model.TimeUnit;
-import org.junit.AfterClass;
+import org.junit.ClassRule;
 import org.junit.Rule;
+import org.junit.rules.ExternalResource;
 import org.junit.rules.Stopwatch;
-import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
@@ -28,9 +29,9 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @ActiveProfiles(resolver = ActiveDbProfileResolver.class)
 public abstract class AbstractServiceTest {
-    private static final Logger log = getLogger("result");
 
-    private static final StringBuilder results = new StringBuilder();
+    @ClassRule
+    public static ExternalResource summary = TimingRules.SUMMARY;
 
     @Rule
     // http://stackoverflow.com/questions/14892125/what-is-the-best-practice-to-determine-the-execution-time-of-the-bussiness-relev
