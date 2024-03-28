@@ -37,28 +37,6 @@ public abstract class AbstractServiceTest {
     public static ExternalResource summary = TimingRules.SUMMARY;
 
     @Rule
-    // http://stackoverflow.com/questions/14892125/what-is-the-best-practice-to-determine-the-execution-time-of-the-bussiness-relev
-//    public Stopwatch stopwatch = new Stopwatch() {
-//        @Override
-//        protected void finished(long nanos, Description description) {
-////            String result = String.format("%-95s %7d", description.getDisplayName(), TimeUnit.NANOSECONDS.toMillis(nanos));
-//            String result = String.format("%-95s %7d", description.getDisplayName(), (nanos / 1_000_000));
-//            results.append(result).append('\n');
-//            log.info(result + " ms\n");
-//        }
-//    };
-//
-//
-//    //    https://dzone.com/articles/applying-new-jdk-11-string-methods
-//    private static final String DELIM = "-".repeat(103);
-//
-//    @AfterClass
-//    public static void printResult() {
-//        log.info("\n" + DELIM +
-//                "\nTest                                                                                       Duration, ms" +
-//                "\n" + DELIM + "\n" + results + DELIM + "\n");
-//        results.setLength(0);
-//    }
     public Stopwatch stopwatch = TimingRules.STOPWATCH;
 
     //  Check root cause in JUnit: https://github.com/junit-team/junit4/pull/778
