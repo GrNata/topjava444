@@ -1,0 +1,5 @@
+Для изменения spring.profiles.active при запуске tomcat (задан в web.xml - postgres,datajpa):
+
+Edit Cinfiguration -> VN options:   -Dspring.profiles.active=jdbc,postgres
+(в jdbc - роли не достаются)
+____________________________________________________________________________________________
