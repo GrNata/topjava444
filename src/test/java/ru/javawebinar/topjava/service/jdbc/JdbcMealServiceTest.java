@@ -6,7 +6,7 @@ import ru.javawebinar.topjava.service.AbstractMealServiceTest;
 
 import static ru.javawebinar.topjava.Profiles.JDBC;
 
-@Ignore
+//@Ignore
 @ActiveProfiles(JDBC)
 public class JdbcMealServiceTest extends AbstractMealServiceTest {
     @Override
